@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Library.MainPage"
+             xmlns:viewmodel="clr-namespace:Library.ViewModel"
+             x:DataType="viewmodel:MainViewModel"        
+             BackgroundColor="#262836">
+
+    <Shell.TitleView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="HOME" TextColor="LightGray" FontSize="Medium" HeightRequest="40" VerticalTextAlignment="Center" 
+                   VerticalOptions="Center" Padding="30" Grid.Row="0" Grid.Column="0"/>
+
+            <Button Text="ADD NEW MOVIE" Grid.Row="0" Margin="2" Grid.Column="2" BackgroundColor="#512BD4" TextColor="LightGray" BorderColor="LightGray" Command="{Binding toAddPageCommand}"/>
+        </Grid>
+        
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout
+                Spacing="25"
+                Padding="30,10,30,30"
+                VerticalOptions="Center">
+
+            <ListView BackgroundColor="#1F1D2B" ItemsSource="{Binding moviesList}" SelectedItem="{Binding selectedMovie}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Grid Margin="5" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="25"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"                                   
+                                           Grid.Column="0"
+                                           Text="Title: "
+                                           FontSize="Title"
+                                           TextColor="White"/>
+                                <Label Grid.Row="0" 
+                                           Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           FontAttributes="Bold"
+                                           FontSize="Title"
+                                           TextColor="White"/>
+
+                                <Label Grid.Row="1"                                        
+                                           Grid.Column="0"
+                                           Text="Description: "
+                                           TextColor="White"/>
+                                <Label Grid.Row="1"                                             
+                                           Grid.Column="1"
+                                           Text="{Binding Description}"
+                                           TextColor="White"/>
+        
+                                <Label Grid.Row="2"
+                                           Grid.Column="0"
+                                           HorizontalOptions="Start"
+                                           Text="Author: "
+                                           TextColor="White"/>
+                                <Label Grid.Row="2"
+                                           Grid.Column="1"
+                                           Text="{Binding Author}"
+                                           HorizontalOptions="Start"
+                                           TextColor="White"/>
+
+                                <Label Grid.Row="2"                                      
+                                           Grid.Column="2"
+                                           Text="{Binding Rating}"
+                                           HorizontalOptions="End" 
+                                           TextColor="White"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
